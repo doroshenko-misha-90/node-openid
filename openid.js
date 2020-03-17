@@ -1074,7 +1074,7 @@ var _checkNonce = function (params) {
   _removeOldNonces();
 
   // Check if nonce is skewed by more than 5 minutes
-  if (Math.abs(new Date().getTime() - timestamp.getTime()) > 300000) {
+  if (new Date().getTime() - timestamp.getTime() > 300000) {
     return false;
   }
 
@@ -1090,7 +1090,7 @@ var _checkNonce = function (params) {
 
 var _removeOldNonces = function () {
   for (var nonce in _nonces) {
-    if (hasOwnProperty(_nonces, nonce) && Math.abs(new Date().getTime() - _nonces[nonce].getTime()) > 300000) {
+    if (hasOwnProperty(_nonces, nonce) && new Date().getTime() - _nonces[nonce].getTime() > 300000) {
       delete _nonces[nonce];
     }
   }
